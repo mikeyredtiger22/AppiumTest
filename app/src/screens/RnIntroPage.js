@@ -1,16 +1,6 @@
-/* eslint-disable no-use-before-define,react/prefer-stateless-function */
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-  Platform, StyleSheet, Text, View,
-} from 'react-native';
+import { Button, Platform, StyleSheet, Text, View } from 'react-native';
+import { Navigator } from 'react-native-navigation';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n'
@@ -19,14 +9,24 @@ const instructions = Platform.select({
     + 'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+type Props = {
+  navigator: Navigator
+};
+export default class RnIntroPage extends Component<Props> {
+  navigateToTabPage = () => {
+    this.props.navigator.push({
+      screen: 'example.PushedScreen',
+      title: 'Pushed Screen',
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <Button onPress={this.navigateToTabPage} title="Navigate" />
       </View>
     );
   }
