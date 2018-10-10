@@ -55,7 +55,12 @@ export default class TestPage extends Component<Props> {
           onPress={() => this.handleIncrementCounter()}
           accessibilityLabel="counterInc"
         />
-        <Button title="Pop Screen" onPress={() => this.popScreen()} />
+        <Button
+          title="Pop Screen"
+          onPress={() => this.popScreen()}
+          style={styles.bottomPad}
+          accessibilityLabel="TestPage.PopNav"
+        />
       </View>
     );
   }
@@ -77,5 +82,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  bottomPad: {
+    marginBottom: 10,
   },
 });

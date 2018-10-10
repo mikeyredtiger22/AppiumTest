@@ -26,7 +26,11 @@ export default class RnIntroPage extends Component<Props> {
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
-        <Button onPress={this.navigateToTabPage} title="Navigate" />
+        <Button
+          title="Navigate"
+          onPress={this.navigateToTabPage}
+          accessibilityLabel="IntroPage.NavTo.TestPage"
+        />
       </View>
     );
   }

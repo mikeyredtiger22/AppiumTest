@@ -27,6 +27,14 @@ describe('App', () => {
     }
   });
 
+  /**
+   * 1. Navigate
+   * 2. Wait for view to be visible
+   * 3. Read Counter
+   * 4. Press Counter and check value
+   * 5. Pop view
+   */
+
   it('app renders', async () => {
     expect(await driver.hasElementByAccessibilityId('testview')).toBe(true);
     expect(await driver.hasElementByAccessibilityId('notthere')).toBe(false);
