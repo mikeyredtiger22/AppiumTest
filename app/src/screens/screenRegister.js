@@ -1,8 +1,10 @@
 import { Navigation } from 'react-native-navigation';
 
-import FirstTabScreen from './TestPage';
+import TestPage from './TestPage';
+import RnIntroPage from './RnIntroPage';
 
 // register all screens of the app (including internal ones)
 export function registerScreens() {
-  Navigation.registerComponent('example.FirstTabScreen', () => FirstTabScreen);
+  Navigation.registerComponent('screens.Test', () => TestPage);
+  Navigation.registerComponent('screens.Intro', () => RnIntroPage);
 }

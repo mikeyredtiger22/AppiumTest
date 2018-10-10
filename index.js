@@ -1,2 +1,2 @@
 /* eslint-disable no-unused-vars */
-// import App from './app/src/App';
+import App from './app/src/App';

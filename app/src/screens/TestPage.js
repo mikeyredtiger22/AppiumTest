@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {
-  Button, StyleSheet, Text, View,
-} from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { Navigator } from 'react-native-navigation';
 
-type Props = {};
+type Props = {
+  navigator: Navigator
+};
 export default class TestPage extends Component<Props> {
   constructor() {
     super();
@@ -21,7 +22,7 @@ export default class TestPage extends Component<Props> {
 
   createInterval() {
     this.interval = setInterval(() => (
-      this.setState(prevState => ({ timer: prevState.timer + 1 }), 100)));
+      this.setState(prevState => ({ timer: prevState.timer + 1 }))), 100);
   }
 
   handlePlayPauseTimer() {
@@ -37,6 +38,10 @@ export default class TestPage extends Component<Props> {
     this.setState(prevState => ({ counter: prevState.counter + 1 }));
   }
 
+  popScreen() {
+    this.props.navigator.pop({ animated: true, animationType: 'fade' });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -50,6 +55,7 @@ export default class TestPage extends Component<Props> {
           onPress={() => this.handleIncrementCounter()}
           accessibilityLabel="counterInc"
         />
+        <Button title="Pop Screen" onPress={() => this.popScreen()} />
       </View>
     );
   }

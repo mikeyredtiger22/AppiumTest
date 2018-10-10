@@ -15,7 +15,7 @@ type Props = {
 export default class RnIntroPage extends Component<Props> {
   navigateToTabPage = () => {
     this.props.navigator.push({
-      screen: 'example.PushedScreen',
+      screen: 'screens.Test',
       title: 'Pushed Screen',
     });
   };

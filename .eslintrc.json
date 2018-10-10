@@ -12,6 +12,7 @@
         "react/destructuring-assignment": "off",
         "react/jsx-one-expression-per-line": "off",
         "no-use-before-define": ["error", { "variables": false }],
-        "object-curly-newline": ["error", { "ImportDeclaration": "never" }]
+        "object-curly-newline": ["error", { "ImportDeclaration": "never" }],
+        "import/prefer-default-export": "off"
     }
 }
