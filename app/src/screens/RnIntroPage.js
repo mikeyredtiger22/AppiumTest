@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Navigator } from 'react-native-navigation';
+import { Button } from 'react-native-elements';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n'

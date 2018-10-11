@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Navigator } from 'react-native-navigation';
+import { Button, ThemeProvider } from 'react-native-elements';
+import { appTheme } from '../AppTheme';
 
 type Props = {
   navigator: Navigator
@@ -44,24 +46,43 @@ export default class TestPage extends Component<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>
-          Timer:{this.state.timer}
-        </Text>
-        <Button title="play/pause timer" onPress={() => this.handlePlayPauseTimer()} />
-        <Text accessibilityLabel="counter">Counter:{this.state.counter}</Text>
-        <Button
-          title="  +  "
-          onPress={() => this.handleIncrementCounter()}
-          accessibilityLabel="counterInc"
-        />
-        <Button
-          title="Pop Screen"
-          onPress={() => this.popScreen()}
-          style={styles.bottomPad}
-          accessibilityLabel="TestPage.PopNav"
-        />
-      </View>
+      <ThemeProvider theme={appTheme}>
+        <View style={styles.container}>
+          <Text>
+            Timer:{this.state.timer}
+          </Text>
+          <Button
+            title="play/pause timer"
+            onPress={() => this.handlePlayPauseTimer()}
+          />
+          <Text accessibilityLabel="counter">Counter:{this.state.counter}</Text>
+          <Button
+            title="  +  "
+            onPress={() => this.handleIncrementCounter()}
+            accessibilityLabel="counterInc"
+          />
+          <Button
+            title="Pop Screen"
+            onPress={() => this.popScreen()}
+            containerStyle={styles.topPad} // todo fix padding
+            accessibilityLabel="TestPage.PopNav"
+          />
+          <Button
+            title="LOADING BUTTON"
+            loadingProps={{ size: 'large', color: 'rgba(111, 202, 186, 1)' }}
+            titleStyle={{ fontWeight: '700' }}
+            buttonStyle={{
+              backgroundColor: 'rgba(92, 99,216, 1)',
+              width: 300,
+              height: 45,
+              borderColor: 'transparent',
+              borderWidth: 0,
+              borderRadius: 50,
+            }}
+            containerStyle={{ marginTop: 20 }}
+          />
+        </View>
+      </ThemeProvider>
     );
   }
 }
@@ -83,7 +104,8 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  bottomPad: {
-    marginBottom: 10,
+  topPad: {
+    marginTop: 10,
+    paddingTop: 10,
   },
 });
