@@ -22,7 +22,7 @@ android {
     }
 ...
 ```
-- Change `compile` to 'implementation` and change `testCompile` to `testImplementation`
+- Change `compile` to `implementation` and change `testCompile` to `testImplementation`
 - Change support library versions to:
 ```
     implementation "com.android.support:design:${rootProject.ext.supportLibVersion}"

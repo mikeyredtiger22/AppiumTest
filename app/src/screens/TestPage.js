@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Navigator } from 'react-native-navigation';
-import { Button, ThemeProvider } from 'react-native-elements';
-import { appTheme } from '../AppTheme';
+import { Button } from 'react-native-elements';
 
 type Props = {
   navigator: Navigator
 };
+
 export default class TestPage extends Component<Props> {
   constructor() {
     super();
@@ -46,7 +46,6 @@ export default class TestPage extends Component<Props> {
 
   render() {
     return (
-      <ThemeProvider theme={appTheme}>
         <View style={styles.container}>
           <Text>
             Timer:{this.state.timer}
@@ -82,7 +81,6 @@ export default class TestPage extends Component<Props> {
             containerStyle={{ marginTop: 20 }}
           />
         </View>
-      </ThemeProvider>
     );
   }
 }
