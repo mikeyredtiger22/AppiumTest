@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Navigator } from 'react-native-navigation';
-import { Button } from 'react-native-elements';
+import PillButton from '../components/PillButton';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n'
@@ -27,7 +27,7 @@ export default class RnIntroPage extends Component<Props> {
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
-        <Button
+        <PillButton
           title="Navigate"
           onPress={this.navigateToTabPage}
           accessibilityLabel="IntroPage.NavTo.TestPage"
