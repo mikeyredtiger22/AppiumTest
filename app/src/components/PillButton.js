@@ -3,10 +3,9 @@ import { Button } from 'react-native-elements';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-const PillButton = ({ title, onPress }) => (
+const PillButton = props => (
   <Button
-    title={title}
-    onPress={onPress}
+    {...props}
     buttonStyle={styles.button}
     containerStyle={styles.container}
   />
