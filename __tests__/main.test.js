@@ -35,47 +35,24 @@ describe('App', () => {
    * 5. Pop view
    */
 
-  it('app renders', async () => {
-    expect(await driver.hasElementByAccessibilityId('testview')).toBe(true);
-    expect(await driver.hasElementByAccessibilityId('notthere')).toBe(false);
-    // expect(await driver.hasElementByAccessibilityId('counter')).toBe(true);
-    // expect(await driver.hasElementByAccessibilityId('counterInc')).toBe(true);
+  // todo intellisense for wd driver
+  it('Renders home screen', async () => {
+    await driver.waitForElementByAccessibilityId('IntroPageNavToTestPage', 2000);
+    expect(await driver.hasElementByAccessibilityId('counterInc')).toBe(false);
+    expect(await driver.hasElementByAccessibilityId('TestPagePopNav')).toBe(false);
+    expect(await driver.hasElementByAccessibilityId('IntroPageNavToTestPage')).toBe(true);
+  });
+
+  it('Navigates', async () => {
+    await driver.elementByAccessibilityId('IntroPageNavToTestPage').tap()
+      .waitForElementByAccessibilityId('TestPagePopNav', 200).tap();
   });
 
 
-  // it('appium button click', async () => {
-  //   let counterIncButton = await driver.elementByAccessibilityId('counterInc');
-  //   counterIncButton.tap();
-  //   counterIncButton.tap();
-  // });
-  //
-  // it('appium button click', async () => {
-  //   // expect(await driver.hasElementByAccessibilityId('counter')).toBe(true);
-  //   let counter = await driver.elementByAccessibilityId('counter');
-  //   expect(await counter.text()).toBe('Counter: 2');
-  // });
-
-  // it('should render correctly', async () => {
-  //   expect(await driver.hasElementByAccessibilityId('notthere')).toBe(false);
-  //   expect(await driver.hasElementByAccessibilityId('testview')).toBe(true);
-  // });
-  //
-  // it('should see more', async () => {
-  //   expect(await driver.hasElementByAccessibilityId('notthere')).toBe(false);
-  //   expect(await driver.hasElementByAccessibilityId('testview')).toBe(true);
-  //   expect(await driver.hasElementByAccessibilityId('counterInc')).toBe(true);
-  //   expect(await driver.hasElementByAccessibilityId('counter')).toBe(true);
-  // });
-  //
-  // it('click', async () => {
-  //   let el1 = await driver.elementByAccessibilityId("counterInc");
-  //   await el1.click();
-  //   await el1.tap();
-  //   let el2 = await driver.elementByXPath('//android.widget.Button[@content-desc="counterInc"]');
-  //   await el2.tap();
-  //   await el2.click();
-  //   expect(await driver.hasElementByAccessibilityId('counter')).toBe(true);
-  //   expect(await driver.hasElementByAccessibilityId('testview')).toBe(true);
-  //   expect(await driver.hasElementByAccessibilityId('counterInc')).toBe(true);
-  // });
+  it('Renders home screen again', async () => {
+    await driver.waitForElementByAccessibilityId('IntroPageNavToTestPage', 2000);
+    expect(await driver.hasElementByAccessibilityId('counterInc')).toBe(false);
+    expect(await driver.hasElementByAccessibilityId('TestPagePopNav')).toBe(false);
+    expect(await driver.hasElementByAccessibilityId('IntroPageNavToTestPage')).toBe(true);
+  });
 });
