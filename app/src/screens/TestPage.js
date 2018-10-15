@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Navigator } from 'react-native-navigation';
 import { Button } from 'react-native-elements';
+import PillButton from '../components/PillButton';
 
 type Props = {
   navigator: Navigator
@@ -60,16 +61,10 @@ export default class TestPage extends Component<Props> {
           onPress={this.handleIncrementCounter}
           accessibilityLabel="counterInc"
         />
-        <Button
-          title="Pop Screen"
-          onPress={this.popScreen}
-          containerStyle={styles.topPad} // todo fix padding
-          accessibilityLabel="TestPage.PopNav"
-        />
         <PillButton
-          title="Pill Button"
+          title="Pop Button"
           onPress={this.popScreen}
-          accessibilityLabel="123456"
+          accessibilityLabel="TestPagePopNav"
         />
         <Button
           title="LOADING BUTTON"
@@ -79,8 +74,8 @@ export default class TestPage extends Component<Props> {
             backgroundColor: 'rgba(92, 99,216, 1)',
             width: 300,
             height: 45,
-            borderColor: 'transparent',
-            borderWidth: 0,
+            borderColor: 'black',
+            borderWidth: 1,
             borderRadius: 50,
           }}
           containerStyle={{ marginTop: 20 }}
@@ -96,19 +91,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  topPad: {
-    marginTop: 10,
-    paddingTop: 10,
   },
 });

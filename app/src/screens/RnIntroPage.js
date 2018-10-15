@@ -30,7 +30,7 @@ export default class RnIntroPage extends Component<Props> {
         <PillButton
           title="Navigate"
           onPress={this.navigateToTabPage}
-          accessibilityLabel="IntroPage.NavTo.TestPage"
+          accessibilityLabel="IntroPageNavToTestPage"
         />
       </View>
     );

@@ -6,9 +6,9 @@ Only testing with Android for now.
 Started project with react-native init instead of create-react-native-app. 
 Seemed to solve slow appium execution issues from last project. 
 
-## When cloning project:
+## When cloning project (or updating dependencies):
 - Open react-native-navigation android project (will show as library in android studio, otherwise can be found in node_modules/react-native-navigation/android).
-- Change this is app/build.gradle:
+- Change this in app/build.gradle:
 ```
 ...
 android {
