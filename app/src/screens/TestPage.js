@@ -44,6 +44,10 @@ export default class TestPage extends Component<Props> {
     this.props.navigator.pop({ animated: true, animationType: 'fade' });
   };
 
+  openMapsPage = () => {
+    this.props.navigator.push({ screen: 'screens.Map' });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -64,6 +68,11 @@ export default class TestPage extends Component<Props> {
           title="Pop Button"
           onPress={this.popScreen}
           accessibilityLabel="TestPagePopNav"
+        />
+        <PillButton
+          title="Open Maps"
+          onPress={this.openMapsPage}
+          accessibilityLabel="TestPage.NavMaps"
         />
       </View>
     );
