@@ -16,7 +16,6 @@ export default class TestPage extends Component<Props> {
       counter: 0,
       timer: 0,
     };
-    this.createInterval();
   }
 
   componentWillUnmount() {
@@ -65,20 +64,6 @@ export default class TestPage extends Component<Props> {
           title="Pop Button"
           onPress={this.popScreen}
           accessibilityLabel="TestPagePopNav"
-        />
-        <Button
-          title="LOADING BUTTON"
-          loadingProps={{ size: 'large', color: 'rgba(111, 202, 186, 1)' }}
-          titleStyle={{ fontWeight: '700' }}
-          buttonStyle={{
-            backgroundColor: 'rgba(92, 99,216, 1)',
-            width: 300,
-            height: 45,
-            borderColor: 'black',
-            borderWidth: 1,
-            borderRadius: 50,
-          }}
-          containerStyle={{ marginTop: 20 }}
         />
       </View>
     );
