@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
-
-import MapView, { Marker, ProviderPropType } from 'react-native-maps';
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 const { width, height } = Dimensions.get('window');
 
@@ -38,26 +31,26 @@ class DefaultMarkers extends React.Component {
   }
 
   onMapPress(e) {
-    this.setState({
+    this.setState(prevState => ({
       markers: [
-        ...this.state.markers,
+        ...prevState.markers,
         {
           coordinate: e.nativeEvent.coordinate,
           key: id++,
           color: randomColor(),
         },
       ],
-    });
+    }));
   }
 
   render() {
     return (
       <View style={styles.container}>
         <MapView
-          provider={this.props.provider}
+          provider={PROVIDER_DEFAULT}
           style={styles.map}
           initialRegion={this.state.region}
-          onPress={(e) => this.onMapPress(e)}
+          onPress={e => this.onMapPress(e)}
         >
           {this.state.markers.map(marker => (
             <Marker
@@ -79,10 +72,6 @@ class DefaultMarkers extends React.Component {
     );
   }
 }
-
-DefaultMarkers.propTypes = {
-  provider: ProviderPropType,
-};
 
 const styles = StyleSheet.create({
   container: {
