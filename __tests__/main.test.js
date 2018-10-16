@@ -12,11 +12,9 @@ const driver = wd.promiseChainRemote('localhost', 4723);
 
 describe('App', () => {
   beforeAll(async () => {
-    try {
-      await driver.init(capabilities);
-    } catch (error) {
-      console.error(error);
-    }
+    await driver
+      .init(capabilities)
+      .setImplicitWaitTimeout(2000);
   });
 
   afterAll(async () => {
@@ -37,20 +35,29 @@ describe('App', () => {
 
   // todo intellisense for wd driver
   it('Renders home screen', async () => {
-    await driver.waitForElementByAccessibilityId('IntroPageNavToTestPage', 2000);
     expect(await driver.hasElementByAccessibilityId('counterInc')).toBe(false);
     expect(await driver.hasElementByAccessibilityId('TestPagePopNav')).toBe(false);
     expect(await driver.hasElementByAccessibilityId('IntroPageNavToTestPage')).toBe(true);
+
   });
 
-  it('Navigates', async () => {
-    await driver.elementByAccessibilityId('IntroPageNavToTestPage').tap()
-      .waitForElementByAccessibilityId('TestPagePopNav', 200).tap();
+  it('Navigates to test screen', async () => {
+    await driver.elementByAccessibilityId('IntroPageNavToTestPage').tap();
   });
 
+  it('Renders test screen', async () => {
+    await driver.waitForElementByAccessibilityId('counterInc', 2000);
+    expect(await driver.hasElementByAccessibilityId('counterInc')).toBe(true);
+    expect(await driver.hasElementByAccessibilityId('TestPagePopNav')).toBe(true);
+    expect(await driver.hasElementByAccessibilityId('IntroPageNavToTestPage')).toBe(false);
+  });
+
+  it('Navigates back to home screen', async () => {
+    await driver.elementByAccessibilityId('TestPagePopNav').tap();
+  });
 
   it('Renders home screen again', async () => {
-    await driver.waitForElementByAccessibilityId('IntroPageNavToTestPage', 2000);
+    await driver.waitForElementByAccessibilityId('IntroPageNavToTestPage')
     expect(await driver.hasElementByAccessibilityId('counterInc')).toBe(false);
     expect(await driver.hasElementByAccessibilityId('TestPagePopNav')).toBe(false);
     expect(await driver.hasElementByAccessibilityId('IntroPageNavToTestPage')).toBe(true);
