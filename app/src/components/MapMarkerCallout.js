@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyleSheet,
-  View } from 'react-native';
-
-const propTypes = {
-  children: PropTypes.node.isRequired,
-};
+import { StyleSheet, View } from 'react-native';
 
 const MapMarkerCallout = props => (
-  <View style={[styles.container]}>
+  <View style={styles.container}>
     <View style={styles.bubble}>
-      <View style={styles.amount} accessibilityLabel="CalloutView">
+      <View style={styles.amount}>
         {props.children}
       </View>
     </View>
@@ -20,7 +15,13 @@ const MapMarkerCallout = props => (
   </View>
 );
 
-MapMarkerCallout.propTypes = propTypes;
+MapMarkerCallout.propTypes = {
+  children: PropTypes.node,
+};
+
+MapMarkerCallout.defaultProps = {
+  children: null,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +29,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   bubble: {
-    width: 140,
     flexDirection: 'row',
     alignSelf: 'flex-start',
     backgroundColor: '#4da2ab',
