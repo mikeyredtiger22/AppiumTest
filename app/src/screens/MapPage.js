@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, PermissionsAndroid } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_DEFAULT } from 'react-native-maps';
+import { Navigator } from 'react-native-navigation';
 import MapMarkerCallout from '../components/MapMarkerCallout';
 
 const { width, height } = Dimensions.get('window');
@@ -16,7 +17,11 @@ function randomColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-class DefaultMarkers extends React.Component {
+type Props = {
+  navigator: Navigator
+};
+
+class MapPage extends React.Component<Props> {
   constructor(props) {
     super(props);
 
@@ -48,14 +53,28 @@ class DefaultMarkers extends React.Component {
         },
       ],
     };
+
+    this.requestCameraPermission();
   }
 
-  show() {
-    this.marker1.showCallout();
-  }
+  navHome = () => {
+    this.props.navigator.popToRoot();
+  };
 
-  hide() {
-    this.marker1.hideCallout();
+  async requestCameraPermission() {
+    try {
+      const requestResult = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'Cool Photo App Camera Permission',
+          message: 'Cool Photo App needs access to your camera '
+            + 'so you can take awesome pictures.',
+        },
+      );
+      console.warn(requestResult);
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
   render() {
@@ -66,14 +85,18 @@ class DefaultMarkers extends React.Component {
           provider={PROVIDER_DEFAULT}
           style={styles.map}
           initialRegion={region}
+          showsUserLocation
+          showsMyLocationButton
+          userLocationAnnotationTitle="LOCAC"
         >
           <Marker
             accessibilityLabel="Label0"
             coordinate={markers[0].coordinate}
-            title="Title"
-            description="Desc"
+            title="Title234"
+            description="Desc234"
+            pinColor={randomColor()}
           >
-            <Callout tooltip style={styles.customView}>
+            <Callout tooltip>
               <MapMarkerCallout>
                 <Text>This is a custom callout bubble view</Text>
               </MapMarkerCallout>
@@ -82,43 +105,23 @@ class DefaultMarkers extends React.Component {
           <Marker
             accessibilityLabel="Label1"
             coordinate={markers[1].coordinate}
-            title="Title"
-            description="Desc"
+            title="Title123"
+            description="Desc123"
+            pinColor={randomColor()}
           >
-            <Callout tooltip style={styles.customView}>
+            <Callout tooltip>
               <MapMarkerCallout>
-                <Text>This is a custom callout bubble view</Text>
+                <Text>Tap here to go to the Home Page</Text>
               </MapMarkerCallout>
             </Callout>
           </Marker>
         </MapView>
-        <View style={styles.buttonContainer}>
-          <View style={styles.bubble}>
-            <Text>Tap on markers to see different callouts</Text>
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => this.show()}
-            style={[styles.bubble, styles.button]}
-            accessibilityLabel="ShowCallout"
-          >
-            <Text>Show</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.hide()} style={[styles.bubble, styles.button]}>
-            <Text>Hide</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  customView: {
-    width: 140,
-    height: 100,
-  },
   plainView: {
     width: 60,
   },
@@ -154,4 +157,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DefaultMarkers;
+export default MapPage;
