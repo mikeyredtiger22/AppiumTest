@@ -4,6 +4,8 @@ import MapView, { Marker, Callout, PROVIDER_DEFAULT } from 'react-native-maps';
 import { Navigator } from 'react-native-navigation';
 import MapMarkerCallout from '../components/MapMarkerCallout';
 
+const locationPermission = PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION;
+
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -22,23 +24,6 @@ type Props = {
 };
 
 class MapPage extends React.Component<Props> {
-  static async requestLocationPermission() {
-    try {
-      PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'Cool Photo App Camera Permission',
-          message: 'Cool Photo App needs access to your camera '
-            + 'so you can take awesome pictures.',
-        },
-      ).then((requestResult) => {
-        console.warn(requestResult);
-      });
-    } catch (err) {
-      console.warn(err);
-    }
-  }
-
   constructor(props) {
     super(props);
 
@@ -73,8 +58,17 @@ class MapPage extends React.Component<Props> {
   }
 
   componentDidMount() {
-    MapPage.requestLocationPermission();
+    this.requestLocationPermission();
   }
+
+  requestLocationPermission = () => {
+    PermissionsAndroid.request(locationPermission, {
+      title: 'Location Permission Needed',
+      message: 'We need your access to your location to show on the maps screen.',
+    }).then((requestResult) => {
+      console.warn(requestResult);
+    });
+  };
 
   navHome = () => {
     this.props.navigator.popToRoot();
