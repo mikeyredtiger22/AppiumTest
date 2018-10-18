@@ -22,6 +22,23 @@ type Props = {
 };
 
 class MapPage extends React.Component<Props> {
+  static async requestLocationPermission() {
+    try {
+      PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Cool Photo App Camera Permission',
+          message: 'Cool Photo App needs access to your camera '
+            + 'so you can take awesome pictures.',
+        },
+      ).then((requestResult) => {
+        console.warn(requestResult);
+      });
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+
   constructor(props) {
     super(props);
 
@@ -53,29 +70,15 @@ class MapPage extends React.Component<Props> {
         },
       ],
     };
+  }
 
-    this.requestCameraPermission();
+  componentDidMount() {
+    MapPage.requestLocationPermission();
   }
 
   navHome = () => {
     this.props.navigator.popToRoot();
   };
-
-  async requestCameraPermission() {
-    try {
-      const requestResult = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CAMERA,
-        {
-          title: 'Cool Photo App Camera Permission',
-          message: 'Cool Photo App needs access to your camera '
-            + 'so you can take awesome pictures.',
-        },
-      );
-      console.warn(requestResult);
-    } catch (err) {
-      console.warn(err);
-    }
-  }
 
   render() {
     const { region, markers } = this.state;
@@ -109,7 +112,7 @@ class MapPage extends React.Component<Props> {
             description="Desc123"
             pinColor={randomColor()}
           >
-            <Callout tooltip>
+            <Callout tooltip onPress={this.navHome}>
               <MapMarkerCallout>
                 <Text>Tap here to go to the Home Page</Text>
               </MapMarkerCallout>
