@@ -48,7 +48,7 @@ export default class TestPage extends Component<Props> {
     this.props.navigator.push({
       screen: 'screens.Map',
       title: 'Maps Demo',
-      subtitle: 'What a lovely subtitle.',
+      subtitle: 'react-native-maps',
     });
   };
 

@@ -66,7 +66,7 @@ class MapPage extends React.Component<Props> {
       title: 'Location Permission Needed',
       message: 'We need your access to your location to show on the maps screen.',
     }).then((requestResult) => {
-      console.warn(requestResult);
+      console.log(requestResult);
     });
   };
 
@@ -84,13 +84,10 @@ class MapPage extends React.Component<Props> {
           initialRegion={region}
           showsUserLocation
           showsMyLocationButton
-          userLocationAnnotationTitle="LOCAC"
         >
           <Marker
-            accessibilityLabel="Label0"
             coordinate={markers[0].coordinate}
-            title="Title234"
-            description="Desc234"
+            title="MarkeroOne"
             pinColor={randomColor()}
           >
             <Callout tooltip>
@@ -100,10 +97,8 @@ class MapPage extends React.Component<Props> {
             </Callout>
           </Marker>
           <Marker
-            accessibilityLabel="Label1"
             coordinate={markers[1].coordinate}
-            title="Title123"
-            description="Desc123"
+            description="MarkerTwo"
             pinColor={randomColor()}
           >
             <Callout tooltip onPress={this.navHome}>
